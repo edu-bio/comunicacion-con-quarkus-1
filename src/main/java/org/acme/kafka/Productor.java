@@ -12,7 +12,6 @@ import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 @Path("/libro")
 public class Productor {
-
 	@Inject @Channel("libros")
 	Emitter<Libro> emitter;
 	
@@ -21,13 +20,13 @@ public class Productor {
 	public void generar(@PathParam("titulo")String titulo) {
 		Libro a = new Libro(titulo);
 		//emitter.send("{\"nombre\":\"hola\"}");
+		System.out.println(a.toString());
 		emitter.send(a);
 	}
 	
 	public Libro nuevo(String titulo) {
 		return new Libro(titulo);
 	}
-	
 	
 	//localhost:8181/libro
 	@GET
